@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="/WEB-INF/template/Layout.xhtml">
+
+	<ui:define name="titulo">Consulta de Xxxx</ui:define>
+
+	<ui:define name="corpo">
+		<h:form>
+			<p:growl id="messages" showDetail="true" />
+			<!-- <p:messages id="messages" showDetail="true" closable="true">
+				<p:autoUpdate/>
+			</p:messages> -->
+
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:button icon="pi pi-plus" value="Novo" title="Novo" outcome="cadastro" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:dataTable
+				reflow="true" styleClass="cargos-table" paginator="true" rows="10" paginatorPosition="bottom"
+				rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+				
+				<p:column headerText="Nome">
+					<h:outputText value="SEGURANÇA" />
+				</p:column>
+
+				<p:column headerText="Departamento" >
+					<h:outputText value="TI" />
+				</p:column>
+
+				<p:column headerText="Ações">
+					<p:button icon="pi pi-pencil" title="Alterar" outcome="cadastro">
+						<f:param name="id" value="1" />
+						</p:button>
+
+						<p:commandButton icon="pi pi-trash" process="@this"
+							oncomplete="PF('deleteDialog').show()">
+							<f:setPropertyActionListener value=""
+								target="" />
+						</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			<p:confirmDialog widgetVar="deleteDialog" showEffect="fade" width="350"
+				message="Exclusão de XXXX?" header="Confirmação" severity="warn">
+				<p:commandButton value="Sim" icon="pi pi-check" actionListener="excluir()"
+					process="@this" update="@form" oncomplete="PF('deleteDialog').hide()" />
+				<p:commandButton value="Não" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
+					process="@this" update="@form" onclick="PF('deleteDialog').hide()" />
+			</p:confirmDialog>
+
+			<!-- dependendo do botão clicado a ação é executanda -->
+			<p:confirmDialog global="true" showEffect="fade" width="300">
+				<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+				<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no ui-button-secondary"
+					icon="pi pi-times" />
+			</p:confirmDialog>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>
