@@ -13,42 +13,7 @@ and open the template in the editor.
 
 	<ui:define name="corpo">
 		<h:form>
-			<p:growl id="messages" showDetail="true" />
-			<!-- <p:messages id="messages" showDetail="true" closable="true">
-				<p:autoUpdate/>
-			</p:messages> -->
-
-			<p:toolbar>
-				<p:toolbarGroup>
-					<p:button icon="pi pi-plus" value="Novo" title="Novo" outcome="cadastro" />
-				</p:toolbarGroup>
-			</p:toolbar>
-
-			<p:dataTable
-				reflow="true" styleClass="cargos-table" paginator="true" rows="10" paginatorPosition="bottom"
-				rowsPerPageTemplate="5,10,{ShowAll|'All'}">
-				
-				<p:column headerText="Nome">
-					<h:outputText value="SEGURANÇA" />
-				</p:column>
-
-				<p:column headerText="Departamento" >
-					<h:outputText value="TI" />
-				</p:column>
-
-				<p:column headerText="Ações">
-					<p:button icon="pi pi-pencil" title="Alterar" outcome="cadastro">
-						<f:param name="id" value="1" />
-						</p:button>
-
-						<p:commandButton icon="pi pi-trash" process="@this"
-							oncomplete="PF('deleteDialog').show()">
-							<f:setPropertyActionListener value=""
-								target="" />
-						</p:commandButton>
-				</p:column>
-			</p:dataTable>
-
+			
 			<p:confirmDialog widgetVar="deleteDialog" showEffect="fade" width="350"
 				message="Exclusão de XXXX?" header="Confirmação" severity="warn">
 				<p:commandButton value="Sim" icon="pi pi-check" actionListener="excluir()"
