@@ -25,10 +25,10 @@ import javax.servlet.ServletContext;
 
 
 @SpringBootApplication
-public class Ifbademo_matApplication implements ServletContextAware {
+public class Ifbademo_vespApplication implements ServletContextAware {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Ifbademo_matApplication.class, args);
+		SpringApplication.run(Ifbademo_vespApplication.class, args);
 	}
 
 	@Bean
