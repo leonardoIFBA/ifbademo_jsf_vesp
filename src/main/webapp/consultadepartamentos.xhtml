@@ -9,14 +9,36 @@ and open the template in the editor.
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="/WEB-INF/template/Layout.xhtml">
 
-	<ui:define name="titulo">Consulta de Xxxx</ui:define>
+	<ui:define name="titulo">Consulta de Departamentos</ui:define>
 
 	<ui:define name="corpo">
 		<h:form>
-			
+			<p:growl showDetail="true"/>
+			<p:dataTable var="depto" value="#{consultaDepartamentoBean.departamentos}" 
+						paginator="true" rows="10" 
+						paginatorPosition="bottom"
+						rowsPerPageTemplate="5,10,{ShowAll|'All'}" >
+				
+				<p:column headerText="Nome">
+					<h:outputText value="#{depto.nome}" />
+				</p:column>
+
+				<p:column headerText="Ações">
+					<p:button title="Alterar" icon="pi pi-pencil">
+
+					</p:button>
+					<p:commandButton title="Excluir" icon="pi pi-trash"
+						process="@this" oncomplete="PF('deleteDialog').show()">
+						<f:setPropertyActionListener value="#{depto}"
+							target="#{consultaDepartamentoBean.deptoSelecionado}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
 			<p:confirmDialog widgetVar="deleteDialog" showEffect="fade" width="350"
-				message="Exclusão de XXXX?" header="Confirmação" severity="warn">
-				<p:commandButton value="Sim" icon="pi pi-check" actionListener="excluir()"
+				message="Exclusão de Departamento?"  header="Confirmação" severity="warn">
+				<p:commandButton value="Sim" icon="pi pi-check" actionListener="#{consultaDepartamentoBean.excluir()}"
 					process="@this" update="@form" oncomplete="PF('deleteDialog').hide()" />
 				<p:commandButton value="Não" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
 					process="@this" update="@form" onclick="PF('deleteDialog').hide()" />
