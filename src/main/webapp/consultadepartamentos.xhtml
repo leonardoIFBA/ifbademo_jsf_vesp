@@ -14,6 +14,14 @@ and open the template in the editor.
 	<ui:define name="corpo">
 		<h:form>
 			<p:growl showDetail="true"/>
+
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:button icon="pi pi-plus" value="Novo" 
+					     outcome="cadastrodepartamento" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
 			<p:dataTable var="depto" value="#{consultaDepartamentoBean.departamentos}" 
 						paginator="true" rows="10" 
 						paginatorPosition="bottom"
@@ -24,8 +32,8 @@ and open the template in the editor.
 				</p:column>
 
 				<p:column headerText="Ações">
-					<p:button title="Alterar" icon="pi pi-pencil">
-
+					<p:button title="Alterar" icon="pi pi-pencil" outcome="cadastrodepartamento">
+						<f:param name="id" value="#{depto.id}" />
 					</p:button>
 					<p:commandButton title="Excluir" icon="pi pi-trash"
 						process="@this" oncomplete="PF('deleteDialog').show()">
