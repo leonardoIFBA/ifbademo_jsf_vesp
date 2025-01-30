@@ -11,13 +11,13 @@
 	
 
 	<f:metadata>
-		<f:viewParam name="id" value="#{cadastroDepartamentoBean.departamento.id}"/>
-		<f:viewAction action="#{cadastroDepartamentoBean.prepararCadastro()}" 
+		<f:viewParam name="id" value="#{cadastroCargoBean.cargo.id}"/>
+		<f:viewAction action="#{cadastroCargoBean.prepararCadastro()}" 
 		            if="#{param.id ne null}" />
 	</f:metadata>
 
 	<ui:define name="titulo">
-		Cadastro de Departamento
+		Cadastro de Cargo
 	</ui:define>
 
 	<ui:define name="corpo">
@@ -33,17 +33,24 @@
 			<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-1,ui-grid-col-11"
 			styleClass="ui-panelgrid-blank ui-fluid" style="border:0px none; background-color:transparent;">
 				<p:outputLabel value="Nome:"/>
-				<p:inputText value="#{cadastroDepartamentoBean.departamento.nome}"
+				<p:inputText value="#{cadastroCargoBean.cargo.nome}"
 					required="true" requiredMessage="O campo NOME não pode ficar em branco"/>
+				<p:outputLabel value="Departamento:"/>
+				<p:selectOneMenu value="#{cadastroCargoBean.cargo.departamento}" >
+					<f:selectItem itemLabel="Selecione" noSelectionOption="true" 
+											itemDisabled="true"/>
+					<f:selectItems value="#{cadastroCargoBean.todosDepartamentos}" var="depto" 
+								itemLabel="#{depto.nome}" itemValue="#{depto}" />
+				</p:selectOneMenu>
 
 			</p:panelGrid>
 
 			<p:commandButton icon="pi pi-save" value="Salvar" 
-			     actionListener="#{cadastroDepartamentoBean.salvar()}"
+			     actionListener="#{cadastroCargoBean.salvar()}"
 				 process="@all" update="@form"/>
 			
 				 <p:button icon="pi pi-undo" value="Cancelar"
-				     outcome="consultadepartamentos" />
+				     outcome="consultacargos" />
 			
 		</h:form>
 
