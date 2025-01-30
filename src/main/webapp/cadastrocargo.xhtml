@@ -36,7 +36,9 @@
 				<p:inputText value="#{cadastroCargoBean.cargo.nome}"
 					required="true" requiredMessage="O campo NOME não pode ficar em branco"/>
 				<p:outputLabel value="Departamento:"/>
-				<p:selectOneMenu value="#{cadastroCargoBean.cargo.departamento}" >
+				<p:selectOneMenu value="#{cadastroCargoBean.cargo.departamento}" 
+								converter="#{departamentoConverter}">
+								
 					<f:selectItem itemLabel="Selecione" noSelectionOption="true" 
 											itemDisabled="true"/>
 					<f:selectItems value="#{cadastroCargoBean.todosDepartamentos}" var="depto" 
